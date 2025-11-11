@@ -1,0 +1,43 @@
+:root {
+  /* Cores principais (u4digital / uHunter theme) - Dark Mode */
+  --color-primary: #5A98A3; /* Azul primário (viridian) */
+  --color-secondary: #7B8D93; /* Azul-acinzentado (cool-gray) */
+  --color-dark: #FFFFFF; /* Texto claro para dark mode */
+  --color-surface: rgba(255, 255, 255, 0.05); /* Superfície semi-transparente */
+  --color-surface-solid: rgba(255, 255, 255, 0.1); /* Superfície mais opaca */
+  --color-gray: rgba(255, 255, 255, 0.7); /* Cinza médio claro - mais visível */
+  --color-text: #FFFFFF; /* Texto claro - branco puro */
+  --color-accent: #7B8D93;
+
+  /* Feedbacks */
+  --color-success: #4CAF50;
+  --color-warning: #FFB300;
+  --color-danger: #E53935;
+
+  /* Espaçamentos */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+
+  /* Tipografia */
+  --font-family-base: "Inter", "Poppins", sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+
+  /* Bordas e sombras - Dark Mode */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.5);
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+  

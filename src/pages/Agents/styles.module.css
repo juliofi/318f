@@ -1,0 +1,314 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.subtitle {
+  font-size: var(--font-size-base);
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 1;
+}
+
+.newAgentButton {
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.newAgentButton:hover {
+  background-color: var(--color-secondary);
+  color: #FFFFFF;
+}
+
+.formCard {
+  background-color: var(--color-surface-solid);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.formTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: var(--font-size-2xl);
+  color: var(--color-gray);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease;
+}
+
+.closeButton:hover {
+  background-color: rgba(50, 58, 69, 0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.inputGroup label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.inputGroup input,
+.inputGroup textarea,
+.inputGroup select {
+  padding: var(--space-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  resize: vertical;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus,
+.inputGroup select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(90, 152, 163, 0.1);
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.cancelButton {
+  padding: var(--space-md) var(--space-lg);
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 1;
+}
+
+.cancelButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.submitButton {
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: var(--color-secondary);
+}
+
+.agentsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-lg);
+}
+
+.agentCard {
+  background-color: var(--color-surface-solid);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.agentHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.agentIcon {
+  font-size: var(--font-size-3xl);
+  flex-shrink: 0;
+}
+
+.agentInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.agentName {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: capitalize;
+  width: fit-content;
+}
+
+.statusActive {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--color-success);
+}
+
+.statusTraining {
+  background-color: rgba(255, 179, 0, 0.1);
+  color: var(--color-warning);
+}
+
+.statusInactive {
+  background-color: rgba(229, 57, 53, 0.1);
+  color: var(--color-danger);
+}
+
+.agentPersona {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+  opacity: 1;
+}
+
+.agentStats {
+  display: flex;
+  gap: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-gray);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.statLabel {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 1;
+}
+
+.statValue {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.agentActions {
+  display: flex;
+  gap: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.actionButton {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .agentsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+

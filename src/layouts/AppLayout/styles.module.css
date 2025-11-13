@@ -49,6 +49,10 @@
   opacity: 1;
 }
 
+.navIcon {
+  font-size: 1.25rem;
+}
+
 .navLink:hover {
   opacity: 1;
   background-color: rgba(255, 255, 255, 0.25);
@@ -72,24 +76,10 @@
   overflow: hidden;
 }
 
-.header {
-  padding: var(--space-md) var(--space-lg);
-  border-bottom: 1px solid var(--border-color);
-  background-color: var(--color-surface-solid);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-sm);
-}
-
-.welcomeText {
-  margin: 0;
-  font-size: var(--font-size-base);
-  color: var(--color-text);
-  font-weight: 500;
-}
-
 .page {
   flex: 1;
   padding: var(--space-lg);
+  padding-top: calc(var(--space-lg) + var(--space-xl));
   overflow-y: auto;
   background-color: transparent;
 }

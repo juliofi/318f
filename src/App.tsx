@@ -6,6 +6,7 @@ import CRM from "./pages/CRM";
 import Chat from "./pages/Chat";
 import Agents from "./pages/Agents";
 import Settings from "./pages/Settings";
+import Status from "./pages/Status";
 
 export default function App() {
   // Mock: permitindo acesso direto às páginas para desenvolvimento
@@ -15,6 +16,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AuthPage />} />
+        <Route path="/status" element={<Status />} />
         <Route element={<AppLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/crm" element={<CRM />} />

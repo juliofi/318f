@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FiCpu } from "react-icons/fi";
 import styles from "./styles.module.css";
 
 interface Agent {
@@ -195,7 +196,7 @@ export default function Agents() {
             transition={{ duration: 0.2 }}
           >
             <div className={styles.agentHeader}>
-              <div className={styles.agentIcon}>🤖</div>
+              <FiCpu className={styles.agentIcon} />
               <div className={styles.agentInfo}>
                 <h3 className={styles.agentName}>{agent.name}</h3>
                 <span className={`${styles.statusBadge} ${getStatusClass(agent.status)}`}>

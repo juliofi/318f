@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FiMessageCircle, FiInstagram, FiMail } from "react-icons/fi";
+import type { ComponentType, SVGProps } from "react";
 import styles from "./styles.module.css";
+
+type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 
 interface Conversation {
   id: number;
@@ -83,10 +87,10 @@ const mockMessages: Record<number, Message[]> = {
   ],
 };
 
-const channelIcons: Record<string, string> = {
-  whatsapp: "💬",
-  instagram: "📷",
-  email: "📧",
+const channelIcons: Record<Conversation["channel"], IconType> = {
+  whatsapp: FiMessageCircle,
+  instagram: FiInstagram,
+  email: FiMail,
 };
 
 export default function Chat() {
@@ -128,6 +132,7 @@ export default function Chat() {
   };
 
   const selectedConv = mockConversations.find((c) => c.id === selectedConversation);
+  const HeaderChannelIcon = selectedConv ? channelIcons[selectedConv.channel] : null;
 
   return (
     <div className={styles.container}>
@@ -138,7 +143,9 @@ export default function Chat() {
         </div>
 
         <div className={styles.conversationsList}>
-          {mockConversations.map((conversation) => (
+          {mockConversations.map((conversation) => {
+            const ChannelIcon = channelIcons[conversation.channel];
+            return (
             <motion.div
               key={conversation.id}
               className={`${styles.conversationItem} ${
@@ -150,7 +157,7 @@ export default function Chat() {
             >
               <div className={styles.conversationAvatar}>
                 <span className={styles.avatarIcon}>
-                  {channelIcons[conversation.channel]}
+                  <ChannelIcon />
                 </span>
                 {conversation.status === "online" && (
                   <span className={styles.statusIndicator} />
@@ -169,7 +176,8 @@ export default function Chat() {
                 </div>
               </div>
             </motion.div>
-          ))}
+          );
+          })}
         </div>
       </aside>
 
@@ -180,7 +188,7 @@ export default function Chat() {
               <div className={styles.chatHeaderInfo}>
                 <div className={styles.chatAvatar}>
                   <span className={styles.avatarIcon}>
-                    {channelIcons[selectedConv.channel]}
+                    {HeaderChannelIcon ? <HeaderChannelIcon /> : null}
                   </span>
                   {selectedConv.status === "online" && (
                     <span className={styles.statusIndicator} />

@@ -1,14 +1,25 @@
 import { motion } from "framer-motion";
+import { FiUsers, FiCpu, FiMessageSquare, FiCheckCircle } from "react-icons/fi";
+import type { ComponentType, SVGProps } from "react";
 import styles from "./styles.module.css";
 
-const metrics = [
+type IconType = ComponentType<SVGProps<SVGSVGElement>>;
+
+const metrics: Array<{
+  id: number;
+  title: string;
+  value: string;
+  change: string;
+  trend: "up" | "down";
+  Icon: IconType;
+}> = [
   {
     id: 1,
     title: "Clientes Ativos",
     value: "1,234",
     change: "+12%",
     trend: "up",
-    icon: "👥",
+    Icon: FiUsers,
   },
   {
     id: 2,
@@ -16,7 +27,7 @@ const metrics = [
     value: "45.2K",
     change: "+8%",
     trend: "up",
-    icon: "💎",
+    Icon: FiCpu,
   },
   {
     id: 3,
@@ -24,7 +35,7 @@ const metrics = [
     value: "89",
     change: "+23%",
     trend: "up",
-    icon: "💬",
+    Icon: FiMessageSquare,
   },
   {
     id: 4,
@@ -32,7 +43,7 @@ const metrics = [
     value: "94%",
     change: "+2%",
     trend: "up",
-    icon: "✅",
+    Icon: FiCheckCircle,
   },
 ];
 
@@ -74,7 +85,9 @@ export default function Dashboard() {
             transition={{ duration: 0.2 }}
           >
             <div className={styles.metricHeader}>
-              <span className={styles.metricIcon}>{metric.icon}</span>
+              <span className={styles.metricIcon}>
+                <metric.Icon />
+              </span>
               <span
                 className={`${styles.metricChange} ${
                   metric.trend === "up" ? styles.metricChangeUp : styles.metricChangeDown

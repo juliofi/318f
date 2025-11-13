@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import styles from "./styles.module.css";
 
 export default function AuthPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,6 +16,7 @@ export default function AuthPage() {
     // Mock - apenas previne submit padrão
     // Em produção, aqui será feita a autenticação
     console.log("Form submitted:", formData);
+    navigate("/dashboard");
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,4 +1,5 @@
 import { Link, useLocation, Outlet } from "react-router-dom";
+import { FiBarChart2, FiUsers, FiMessageCircle, FiCpu, FiSettings } from "react-icons/fi";
 import styles from "./styles.module.css";
 
 export default function AppLayout() {
@@ -20,40 +21,41 @@ export default function AppLayout() {
             to="/dashboard"
             className={`${styles.navLink} ${isActive("/dashboard") ? styles.navLinkActive : ""}`}
           >
-            📊 Dashboard
+            <FiBarChart2 className={styles.navIcon} />
+            <span>Dashboard</span>
           </Link>
           <Link
             to="/crm"
             className={`${styles.navLink} ${isActive("/crm") ? styles.navLinkActive : ""}`}
           >
-            👥 CRM
+            <FiUsers className={styles.navIcon} />
+            <span>CRM</span>
           </Link>
           <Link
             to="/chat"
             className={`${styles.navLink} ${isActive("/chat") ? styles.navLinkActive : ""}`}
           >
-            💬 Chat
+            <FiMessageCircle className={styles.navIcon} />
+            <span>Chat</span>
           </Link>
           <Link
             to="/agents"
             className={`${styles.navLink} ${isActive("/agents") ? styles.navLinkActive : ""}`}
           >
-            🤖 Agentes IA
+            <FiCpu className={styles.navIcon} />
+            <span>Agentes IA</span>
           </Link>
           <Link
             to="/settings"
             className={`${styles.navLink} ${isActive("/settings") ? styles.navLinkActive : ""}`}
           >
-            ⚙️ Configurações
+            <FiSettings className={styles.navIcon} />
+            <span>Configurações</span>
           </Link>
         </nav>
       </aside>
 
       <main className={styles.content}>
-        <header className={styles.header}>
-          <p className={styles.welcomeText}>Bem-vindo(a), Julio 👋</p>
-        </header>
-
         <section className={styles.page}>
           <Outlet />
         </section>

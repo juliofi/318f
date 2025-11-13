@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { FiMessageCircle, FiInstagram, FiMail } from "react-icons/fi";
+import type { ComponentType, SVGProps } from "react";
 import styles from "./styles.module.css";
+
+type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 
 interface Contact {
   id: number;
@@ -90,10 +94,10 @@ const mockConversations = [
   },
 ];
 
-const channelIcons: Record<string, string> = {
-  whatsapp: "💬",
-  instagram: "📷",
-  email: "📧",
+const channelIcons: Record<Contact["channel"], IconType> = {
+  whatsapp: FiMessageCircle,
+  instagram: FiInstagram,
+  email: FiMail,
 };
 
 export default function CRM() {
@@ -159,33 +163,37 @@ export default function CRM() {
                 </tr>
               </thead>
               <tbody>
-                {filteredContacts.map((contact) => (
-                  <motion.tr
-                    key={contact.id}
-                    className={`${styles.tableRow} ${
-                      selectedContact?.id === contact.id ? styles.tableRowSelected : ""
-                    }`}
-                    onClick={() => setSelectedContact(contact)}
-                    whileHover={{ backgroundColor: "var(--color-surface)" }}
-                    transition={{ duration: 0.1 }}
-                  >
-                    <td className={styles.tableCell}>{contact.name}</td>
-                    <td className={styles.tableCell}>{contact.company}</td>
-                    <td className={styles.tableCell}>{contact.email}</td>
-                    <td className={styles.tableCell}>{contact.phone}</td>
-                    <td className={styles.tableCell}>
-                      <span className={styles.channelBadge}>
-                        {channelIcons[contact.channel]} {contact.channel}
-                      </span>
-                    </td>
-                    <td className={styles.tableCell}>
-                      <span className={`${styles.statusBadge} ${getStatusClass(contact.status)}`}>
-                        {contact.status}
-                      </span>
-                    </td>
-                    <td className={styles.tableCell}>{contact.lastContact}</td>
-                  </motion.tr>
-                ))}
+                {filteredContacts.map((contact) => {
+                  const ChannelIcon = channelIcons[contact.channel];
+                  return (
+                    <motion.tr
+                      key={contact.id}
+                      className={`${styles.tableRow} ${
+                        selectedContact?.id === contact.id ? styles.tableRowSelected : ""
+                      }`}
+                      onClick={() => setSelectedContact(contact)}
+                      whileHover={{ backgroundColor: "var(--color-surface)" }}
+                      transition={{ duration: 0.1 }}
+                    >
+                      <td className={styles.tableCell}>{contact.name}</td>
+                      <td className={styles.tableCell}>{contact.company}</td>
+                      <td className={styles.tableCell}>{contact.email}</td>
+                      <td className={styles.tableCell}>{contact.phone}</td>
+                      <td className={styles.tableCell}>
+                        <span className={styles.channelBadge}>
+                          <ChannelIcon />
+                          {contact.channel}
+                        </span>
+                      </td>
+                      <td className={styles.tableCell}>
+                        <span className={`${styles.statusBadge} ${getStatusClass(contact.status)}`}>
+                          {contact.status}
+                        </span>
+                      </td>
+                      <td className={styles.tableCell}>{contact.lastContact}</td>
+                    </motion.tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -238,22 +246,25 @@ export default function CRM() {
               <div className={styles.detailsGroup}>
                 <h3 className={styles.detailsGroupTitle}>Histórico de Conversas</h3>
                 <div className={styles.conversationsList}>
-                  {mockConversations.map((conversation) => (
-                    <div
-                      key={conversation.id}
-                      className={`${styles.conversationItem} ${
-                        conversation.type === "sent" ? styles.conversationSent : styles.conversationReceived
-                      }`}
-                    >
-                      <div className={styles.conversationHeader}>
-                        <span className={styles.conversationChannel}>
-                          {channelIcons[conversation.channel]} {conversation.channel}
-                        </span>
-                        <span className={styles.conversationDate}>{conversation.date}</span>
+                  {mockConversations.map((conversation) => {
+                    const ChannelIcon = channelIcons[conversation.channel];
+                    return (
+                      <div
+                        key={conversation.id}
+                        className={`${styles.conversationItem} ${
+                          conversation.type === "sent" ? styles.conversationSent : styles.conversationReceived
+                        }`}
+                      >
+                        <div className={styles.conversationHeader}>
+                          <span className={styles.conversationChannel}>
+                            <ChannelIcon /> {conversation.channel}
+                          </span>
+                          <span className={styles.conversationDate}>{conversation.date}</span>
+                        </div>
+                        <p className={styles.conversationMessage}>{conversation.message}</p>
                       </div>
-                      <p className={styles.conversationMessage}>{conversation.message}</p>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>

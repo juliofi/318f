@@ -2,6 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "@/services/firebase";
 import styles from "./styles.module.css";
 
 export default function AuthPage() {
@@ -10,13 +16,60 @@ export default function AuthPage() {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const isAuthConfigured = Boolean(auth);
+  const [errorMessage, setErrorMessage] = useState(
+    isAuthConfigured
+      ? ""
+      : "Firebase não configurado. Defina as variáveis VITE_FIREBASE_* e recarregue.",
+  );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock - apenas previne submit padrão
-    // Em produção, aqui será feita a autenticação
-    console.log("Form submitted:", formData);
-    navigate("/dashboard");
+    setErrorMessage("");
+
+    if (!auth) {
+      setErrorMessage(
+        "Firebase não configurado. Defina as variáveis VITE_FIREBASE_* e recarregue.",
+      );
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Erro ao autenticar:", error);
+      setErrorMessage("Não foi possível entrar. Verifique suas credenciais.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setErrorMessage("");
+
+    if (!auth) {
+      setErrorMessage(
+        "Firebase não configurado. Defina as variáveis VITE_FIREBASE_* e recarregue.",
+      );
+      return;
+    }
+
+    setIsLoading(true);
+    const provider = new GoogleAuthProvider();
+
+    try {
+      await signInWithPopup(auth, provider);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Erro ao autenticar com Google:", error);
+      setErrorMessage("Não foi possível entrar com Google. Tente novamente.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,8 +116,15 @@ export default function AuthPage() {
               required
             />
           </div>
-          <button type="submit" className={styles.submitButton}>
-            Entrar
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
+          <button
+            type="submit"
+            className={styles.submitButton}
+            disabled={isLoading || !isAuthConfigured}
+          >
+            {isLoading ? "Entrando..." : "Entrar"}
           </button>
         </motion.form>
         
@@ -72,9 +132,14 @@ export default function AuthPage() {
           <span>ou</span>
         </div>
 
-        <button type="button" className={styles.googleButton}>
+        <button
+          type="button"
+          className={styles.googleButton}
+          onClick={handleGoogleSignIn}
+          disabled={isLoading || !isAuthConfigured}
+        >
           <FcGoogle className={styles.googleIcon} />
-          <span>Entrar com Google</span>
+          <span>{isLoading ? "Conectando..." : "Entrar com Google"}</span>
         </button>
       </motion.div>
     </div>

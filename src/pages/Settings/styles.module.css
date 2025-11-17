@@ -158,6 +158,24 @@
   color: #FFFFFF;
 }
 
+.logoutButton {
+  padding: var(--space-md) var(--space-lg);
+  background-color: transparent;
+  color: #e53935;
+  border: 1px solid #e53935;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 1;
+}
+
+.logoutButton:hover {
+  background-color: #e53935;
+  color: #FFFFFF;
+}
+
 @media (max-width: 768px) {
   .formActions {
     flex-direction: column;

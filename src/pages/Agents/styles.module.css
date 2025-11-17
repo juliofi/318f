@@ -74,8 +74,9 @@
 .formTitle {
   font-size: var(--font-size-xl);
   font-weight: 600;
-  color: var(--color-text);
+  color: #FFFFFF;
   margin: 0;
+  opacity: 1;
 }
 
 .closeButton {
@@ -167,17 +168,20 @@
 .submitButton {
   padding: var(--space-md) var(--space-lg);
   background-color: var(--color-primary);
-  color: var(--color-surface);
+  color: #FFFFFF;
   border: none;
   border-radius: var(--radius-md);
   font-size: var(--font-size-base);
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  white-space: nowrap;
+  opacity: 1;
 }
 
 .submitButton:hover {
   background-color: var(--color-secondary);
+  color: #FFFFFF;
 }
 
 .agentsGrid {
@@ -309,6 +313,25 @@
   border-top: 1px solid var(--border-color);
 }
 
+.testButton {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 1;
+}
+
+.testButton:hover {
+  background-color: var(--color-secondary);
+  color: #FFFFFF;
+}
+
 .actionButton {
   flex: 1;
   padding: var(--space-sm) var(--space-md);
@@ -344,8 +367,7 @@
   background-color: rgba(229, 57, 53, 0.1);
 }
 
-.loadingState,
-.emptyState {
+.loadingState {
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px dashed var(--border-color);
   border-radius: var(--radius-lg);
@@ -354,8 +376,11 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-.emptyState button {
-  margin-top: var(--space-md);
+.emptyMessage {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--font-size-base);
+  padding: var(--space-lg);
 }
 
 @media (max-width: 768px) {

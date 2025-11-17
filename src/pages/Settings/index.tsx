@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../services/firebase";
 import styles from "./styles.module.css";
 
 export default function Settings() {
+  const navigate = useNavigate();
   const [settings, setSettings] = useState({
     theme: "light",
     notifications: true,
@@ -29,6 +33,16 @@ export default function Settings() {
     // Mock - apenas previne submit padrão
     console.log("Configurações salvas:", settings);
     alert("Configurações salvas com sucesso!");
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+      alert("Erro ao fazer logout. Tente novamente.");
+    }
   };
 
   return (
@@ -174,8 +188,8 @@ export default function Settings() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <button type="button" className={styles.cancelButton}>
-            Cancelar
+          <button type="button" className={styles.logoutButton} onClick={handleLogout}>
+            Sair
           </button>
           <button type="submit" className={styles.submitButton}>
             Salvar Configurações

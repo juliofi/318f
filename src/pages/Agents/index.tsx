@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { FiCpu } from "react-icons/fi";
 import styles from "./styles.module.css";
 import type { AgentRecord, AgentStatus } from "../../services/agents";
@@ -20,6 +21,7 @@ const emptyForm: AgentFormData = {
 };
 
 export default function Agents() {
+  const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
   const [agents, setAgents] = useState<AgentRecord[]>([]);
   const [loading, setLoading] = useState(true);
@@ -224,12 +226,7 @@ export default function Agents() {
       ) : (
         <div className={styles.agentsGrid}>
           {orderedAgents.length === 0 ? (
-            <div className={styles.emptyState}>
-              <p>Nenhum agente cadastrado ainda.</p>
-              <button className={styles.newAgentButton} onClick={() => openForm()}>
-                Criar primeiro agente
-              </button>
-            </div>
+            <p className={styles.emptyMessage}>Nenhum agente cadastrado</p>
           ) : (
             orderedAgents.map((agent) => (
               <motion.div
@@ -269,6 +266,12 @@ export default function Agents() {
                   </div>
                 </div>
                 <div className={styles.agentActions}>
+                  <button
+                    className={styles.testButton}
+                    onClick={() => navigate(`/agents/test/${agent.id}`)}
+                  >
+                    Testar
+                  </button>
                   <button className={styles.actionButton} onClick={() => openForm(agent)}>
                     Editar
                   </button>

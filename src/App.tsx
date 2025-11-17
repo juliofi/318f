@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import CRM from "./pages/CRM";
 import Chat from "./pages/Chat";
 import Agents from "./pages/Agents";
+import TestAgent from "./pages/TestAgent";
 import Settings from "./pages/Settings";
 import Status from "./pages/Status";
 
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/crm" element={<CRM />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/agents" element={<Agents />} />
+          <Route path="/agents/test/:agentId" element={<TestAgent />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>

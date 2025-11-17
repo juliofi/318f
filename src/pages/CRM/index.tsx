@@ -70,7 +70,15 @@ const mockContacts: Contact[] = [
   },
 ];
 
-const mockConversations = [
+interface Conversation {
+  id: number;
+  date: string;
+  channel: Contact["channel"];
+  message: string;
+  type: "received" | "sent";
+}
+
+const mockConversations: Conversation[] = [
   {
     id: 1,
     date: "2024-01-15 14:30",

@@ -1,4 +1,5 @@
-import { useMemo, ComponentType } from "react";
+import { useMemo } from "react";
+import type { ComponentType, CSSProperties } from "react";
 import { FiCheckCircle, FiAlertTriangle, FiXCircle } from "react-icons/fi";
 import styles from "./styles.module.css";
 
@@ -57,7 +58,7 @@ const services: Service[] = [
   },
 ];
 
-type StatusIconComponent = ComponentType<{ className?: string }>;
+type StatusIconComponent = ComponentType<{ className?: string; style?: CSSProperties }>;
 
 type StatusConfig = {
   label: string;
